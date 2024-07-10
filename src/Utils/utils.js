@@ -1,13 +1,13 @@
 // utils.js
 
+const turnos = [
+  { nome: "madrugada", inicio: 0, fim: 6 },
+  { nome: "manha", inicio: 6, fim: 12 },
+  { nome: "tarde", inicio: 12, fim: 18 },
+  { nome: "noite", inicio: 18, fim: 24 },
+];
+
 export function calcularTurno(turnoAtual) {
-  // Definir os horários de início e término de cada turno
-  const turnos = [
-    { nome: "madrugada", inicio: 0, fim: 6 },
-    { nome: "manha", inicio: 6, fim: 12 },
-    { nome: "tarde", inicio: 12, fim: 18 },
-    { nome: "noite", inicio: 18, fim: 24 },
-  ];
 
   // Encontrar o turno atual
   const turnoEncontrado = turnos.find(turno => turno.nome === turnoAtual);
@@ -41,17 +41,16 @@ export const checkAllTrue = (list) => {
   return list.every(item => item.status === true);
 };
 
+export const resetList = (list) => {
+  const updatedList = list.map(item => ({ ...item, status: false }));
+  return updatedList
+
+}
+
 
 export const getTurnoAtual = () => {
   const now = new Date();
   const horaAtual = now.getHours();
-
-  const turnos = [
-      { nome: "madrugada", inicio: 0, fim: 6 },
-      { nome: "manha", inicio: 6, fim: 12 },
-      { nome: "tarde", inicio: 12, fim: 18 },
-      { nome: "noite", inicio: 18, fim: 24 },
-  ];
 
   // Encontrar o turno atual
   for (let turno of turnos) {
@@ -66,12 +65,15 @@ export const getTurnoAtual = () => {
 
 
 export const verificarAtraso = (turnoAtual, turnoPassado) => {
-  const turnos = [
-    { nome: "madrugada", inicio: 0, fim: 6 },
-    { nome: "manha", inicio: 6, fim: 12 },
-    { nome: "tarde", inicio: 12, fim: 18 },
-    { nome: "noite", inicio: 18, fim: 24 },
-  ];
+
+  if (turnoAtual === turnoPassado) { 
+    return {
+      atrasado: false,
+      turnoAtrasado: null,
+    };
+
+  }
+
 
   // Encontrar o índice dos turnos
   const indiceAtual = turnos.findIndex(turno => turno.nome === turnoAtual);

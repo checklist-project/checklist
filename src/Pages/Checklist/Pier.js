@@ -16,6 +16,7 @@ import {
   checkAllTrue,
   getTurnoAtual,
   verificarAtraso,
+  resetList
 } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { FaRegComment } from "react-icons/fa";
 
@@ -51,6 +52,7 @@ const Pier = () => {
     pierState.pier.list[index].status = statusNew;
     if (checkAllTrue(pierState.pier.list) === true) {
       pierState.pier.concluido = true;
+      pierState.pier.list = resetList(pierState.pier.list)
       if (atrasadoInfo.atrasado === true) { 
         setAppStateField("turnoPassado", atrasadoInfo.turnoAtrasado);
       }
