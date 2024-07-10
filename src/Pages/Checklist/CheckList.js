@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { getTurnoAtual } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { AppContext } from "../../Context/AppContext";
-import { FaExclamationTriangle } from "react-icons/fa";
+import { MdOutlineDone } from "react-icons/md";
+import { IoWarningOutline } from "react-icons/io5";
+
 
 const CheckList = () => {
   const turnoAtual = getTurnoAtual();
@@ -36,23 +38,28 @@ const CheckList = () => {
         </Col>
       </Row>
 
-      {pierState.pier.concluido === false && (
-        <Row>
-          <Button
-            variant="warning"
-            size="lg"
-            onClick={() => handleNavigation("./pier")}
-          >
-            Píer
-            {turnoAtual.atrasado === true && (
-              <FaExclamationTriangle
-                size={30}
-                style={{ marginLeft: "10px", float: "right" }}
-              />
-            )}
-          </Button>
-        </Row>
-      )}
+      <Row>
+        <Button
+          variant="warning"
+          size="lg"
+          onClick={() => handleNavigation("./pier")}
+        >
+          Píer
+          {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+            <IoWarningOutline
+              size={30}
+              style={{ marginLeft: "10px", float: "right" }}
+            />
+          )}
+          {pierState.pier.concluido === true && (
+            <MdOutlineDone
+              size={30}
+              style={{ marginLeft: "10px", float: "right" }}
+            />
+          )}
+        </Button>
+      </Row>
+
       {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
         <Row>
           <span
@@ -75,14 +82,14 @@ const CheckList = () => {
         >
           Navio
           {turnoAtual.atrasado === true && (
-              <FaExclamationTriangle
-                size={30}
-                style={{ marginLeft: "10px", float: "right" }}
-              />
-            )}
+            <IoWarningOutline
+              size={30}
+              style={{ marginLeft: "10px", float: "right" }}
+            />
+          )}
         </Button>
       </Row>
-      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+      {turnoAtual.atrasado === true && (
         <Row>
           <span
             style={{
@@ -104,14 +111,14 @@ const CheckList = () => {
         >
           Guindaste
           {turnoAtual.atrasado === true && (
-              <FaExclamationTriangle
-                size={30}
-                style={{ marginLeft: "10px", float: "right" }}
-              />
-            )}
+            <IoWarningOutline
+              size={30}
+              style={{ marginLeft: "10px", float: "right" }}
+            />
+          )}
         </Button>
       </Row>
-      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+      {turnoAtual.atrasado === true && (
         <Row>
           <span
             style={{

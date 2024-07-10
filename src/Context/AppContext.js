@@ -68,7 +68,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ state, setAppStateField, pierState, setPierStateField, pierPendenteState, setPierPendenteStateField, updatePierStatus, updateConluido }}
+      value={{ state, setAppStateField, pierState, setPierStateField, pierPendenteState, setPierPendenteStateField, updatePierStatus }}
     >
       {children}
     </AppContext.Provider>

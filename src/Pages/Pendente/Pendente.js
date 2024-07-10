@@ -38,27 +38,24 @@ const Pendente = () => {
         </Col>
       </Row>
 
-      {atrasadoInfo.atrasado === true && (
-        <Row>
-          <Col>
-            <span style={{ fontSize: "0.8rem" }}>
-              Turno Atual: {turnoAtual}
-            </span>
-            <br />
-            <span
-              style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
-            >
-              Checklist em atrasado: {atrasadoInfo.turnoAtrasado}
-            </span>
-            <br />
-            <span
-              style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
-            >
-              Ultimo checklist concluido: {state.turnoPassado}
-            </span>
-          </Col>
-        </Row>
-      )}
+      <Row>
+        <Col>
+          <span style={{ fontSize: "0.8rem" }}>Turno Atual: {turnoAtual}</span>
+          <br />
+          <span
+            style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
+          >
+            Checklist em atrasado: {atrasadoInfo.turnoAtrasado}
+          </span>
+          <br />
+          <span
+            style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
+          >
+            Ultimo checklist concluido: {state.turnoPassado}
+          </span>
+        </Col>
+      </Row>
+
       <Row>
         <Button
           variant="warning"
