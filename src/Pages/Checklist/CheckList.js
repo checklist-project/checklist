@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { getTurnoAtual } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { AppContext } from "../../Context/AppContext";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 const CheckList = () => {
   const turnoAtual = getTurnoAtual();
@@ -17,6 +18,7 @@ const CheckList = () => {
   function handleNavigation(path) {
     navigate(path);
   }
+  const buttons = [0, 1, 2];
 
   return (
     <Container>
@@ -35,46 +37,41 @@ const CheckList = () => {
           </p>
         </Col>
       </Row>
-      {pierState.pier.concluido === false && (
-        <Row>
-          <Button
-            variant="warning"
-            size="lg"
-            onClick={() => handleNavigation("./pier")}
-          >
-            Píer
-          </Button>
-        </Row>
-      )}
-      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
-        <Row>
-          <span
-            style={{ color: "red", fontSize: "1rem", marginTop: "-0.8rem" }}
-          >
-            Atenção: Checklist em atrasado
-          </span>
-        </Row>
-      )}
-
-      <Row style={{ marginTop: "2rem" }}>
-        <Button
-          variant="warning"
-          size="lg"
-          onClick={() => handleNavigation("./exemplo1")}
-        >
-          Exemplo 1
-        </Button>
-      </Row>
-
-      <Row style={{ marginTop: "2rem" }}>
-        <Button
-          variant="warning"
-          size="lg"
-          onClick={() => handleNavigation("./exemplo2")}
-        >
-          Exemplo 2
-        </Button>
-      </Row>
+      {buttons.map((button, index) => (
+        <>
+          {pierState.pier.concluido === false && (
+            <Row>
+              <Button
+                variant="warning"
+                size="lg"
+                onClick={() => handleNavigation("./pier")}
+              >
+                Píer
+                {turnoAtual.atrasado === true && (
+                  <FaExclamationTriangle
+                    size={30}
+                    style={{ marginLeft: "10px", float: "right" }}
+                  />
+                )}
+              </Button>
+            </Row>
+          )}
+          {turnoAtual.atrasado === true &&
+            pierState.pier.concluido === false && (
+              <Row>
+                <span
+                  style={{
+                    color: "red",
+                    fontSize: "1rem",
+                    marginTop: "-0.8rem",
+                  }}
+                >
+                  Atenção: Checklist em atrasado !
+                </span>
+              </Row>
+            )}
+        </>
+      ))}
     </Container>
   );
 };
