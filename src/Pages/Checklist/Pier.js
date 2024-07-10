@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -16,13 +16,12 @@ import {
   calcularTurno,
   checkAllTrue,
   getTurnoAtual,
-  resetList,
 } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { FaRegComment } from "react-icons/fa";
 
 const Pier = () => {
   const navigate = useNavigate();
-  const { pierState } = useContext(AppContext);
+  const { pierState, updatePierStatus } = useContext(AppContext);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
 
@@ -36,20 +35,21 @@ const Pier = () => {
 
   const turnoAtual = getTurnoAtual();
   const infoTurno = calcularTurno(turnoAtual.turno);
-  
 
   function handleBackClick() {
     navigate(-1);
   }
 
   function handleStatusClick(index, statusNew) {
-    pierState.pier.list[index].status = statusNew;
+    updatePierStatus(index, statusNew);
+  }
+
+  useEffect(() => {
     if (checkAllTrue(pierState.pier.list) === true) {
       pierState.pier.concluido = true;
-      pierState.pier.list = resetList(pierState.pier.list);
       handleShow(true);
     }
-  }
+  }, [pierState]);
 
   const BttRow = (props) => {
     return (
@@ -58,8 +58,27 @@ const Pier = () => {
           <p>{props.title}</p>
         </Col>
         <Col>
-          <span style={{ color: "green" }} onClick={() => handleStatusClick(props.index, true)}>Ok</span>|
-          <span style={{ color: "red" }} onClick={() => handleStatusClick(props.index, false)}>Nok</span>
+          <span
+            className={
+              pierState.pier.list[props.index].status ? "rounded-circle" : ""
+            }
+            style={{ color: "green" }}
+            onClick={() => handleStatusClick(props.index, true)}
+          >
+            Ok
+          </span>
+          |
+          <span
+            className={
+              pierState.pier.list[props.index].status === false
+                ? "rounded-circle"
+                : ""
+            }
+            style={{ color: "red" }}
+            onClick={() => handleStatusClick(props.index, false)}
+          >
+            Nok
+          </span>
         </Col>
         <Col>
           <FaRegComment onClick={() => handleShow2()} size={24} /> |{" "}
@@ -145,7 +164,6 @@ const Pier = () => {
       {pierState.pier.list.map((item, index) => (
         <BttRow key={index} index={item.index} title={item.title} />
       ))}
-
       <Row style={{ paddingTop: "5rem" }} className="justify-content-center">
         <IoArrowBack onClick={() => handleBackClick()} size={48} />
       </Row>

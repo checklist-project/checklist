@@ -85,7 +85,7 @@ const Pier = () => {
         <Modal.Header closeButton>
           <Modal.Title>CheckList concluido</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Ola voce concluiu o checklist</Modal.Body>
+        <Modal.Body>Você concluiu o checklist para a area do Pier</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Fechar

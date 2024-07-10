@@ -74,8 +74,27 @@ const CheckList = () => {
           onClick={() => handleNavigation("./exemple1")}
         >
           Navio
+          {turnoAtual.atrasado === true && (
+              <FaExclamationTriangle
+                size={30}
+                style={{ marginLeft: "10px", float: "right" }}
+              />
+            )}
         </Button>
       </Row>
+      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+        <Row>
+          <span
+            style={{
+              color: "red",
+              fontSize: "1rem",
+              marginTop: "-0.8rem",
+            }}
+          >
+            Atenção: Checklist em atrasado !
+          </span>
+        </Row>
+      )}
 
       <Row style={{ marginTop: "2.5rem" }}>
         <Button
@@ -84,8 +103,27 @@ const CheckList = () => {
           onClick={() => handleNavigation("./exemple2")}
         >
           Guindaste
+          {turnoAtual.atrasado === true && (
+              <FaExclamationTriangle
+                size={30}
+                style={{ marginLeft: "10px", float: "right" }}
+              />
+            )}
         </Button>
       </Row>
+      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+        <Row>
+          <span
+            style={{
+              color: "red",
+              fontSize: "1rem",
+              marginTop: "-0.8rem",
+            }}
+          >
+            Atenção: Checklist em atrasado !
+          </span>
+        </Row>
+      )}
     </Container>
   );
 };
