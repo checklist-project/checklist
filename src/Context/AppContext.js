@@ -16,7 +16,7 @@ const AppProvider = ({ children }) => {
 
   const [pierState, setPierState] = useState({
     pier: {
-      concluido: false,
+      concluido: undefined,
       list: [
         { index: 0, title: "BTT", status: undefined },
         { index: 1, title: "Retorno 101", status: undefined },

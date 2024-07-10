@@ -48,6 +48,8 @@ const Pier = () => {
     if (checkAllTrue(pierState.pier.list) === true) {
       pierState.pier.concluido = true;
       handleShow(true);
+    } else { 
+      pierState.pier.concluido = false;
     }
   }, [pierState]);
 

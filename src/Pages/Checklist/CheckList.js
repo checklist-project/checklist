@@ -9,6 +9,7 @@ import { getTurnoAtual } from "../../Utils/utils"; // Importe a função do arqu
 import { AppContext } from "../../Context/AppContext";
 import { MdOutlineDone } from "react-icons/md";
 import { IoWarningOutline } from "react-icons/io5";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 
 const CheckList = () => {
@@ -45,8 +46,15 @@ const CheckList = () => {
           onClick={() => handleNavigation("./pier")}
         >
           Píer
-          {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+          {turnoAtual.atrasado === true && pierState.pier.concluido === undefined && (
             <IoWarningOutline
+              size={30}
+              style={{ marginLeft: "10px", float: "right" }}
+            />
+          )}
+
+          {pierState.pier.concluido === false && (
+            <IoMdCloseCircleOutline
               size={30}
               style={{ marginLeft: "10px", float: "right" }}
             />
