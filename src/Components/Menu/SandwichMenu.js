@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { AiOutlineHome, AiOutlineInfoCircle, AiOutlineMenu } from 'react-icons/ai';
+import { MdOutlinePendingActions } from "react-icons/md";
+
 
 import './styles.css'; // Arquivo de estilos CSS personalizados
 
@@ -31,7 +33,11 @@ function SandwichMenu() {
           </div>
           <div className="icon-container" onClick={() => handleNavigation('/checklist')}>
             <AiOutlineInfoCircle size={24} />
-            <span>CheckList</span>
+            <span>Fazer CheckList</span>
+          </div>
+          <div className="icon-container" onClick={() => handleNavigation('/pendente')}>
+            <MdOutlinePendingActions size={24} />
+            <span>Pendente CheckList</span>
           </div>
         </div>
       )}

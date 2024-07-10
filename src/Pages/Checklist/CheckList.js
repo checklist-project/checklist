@@ -1,20 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../Context/AppContext";
-import { getTurnoAtual, verificarAtraso } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
-import { FaExclamationTriangle } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
 
 const CheckList = () => {
   const navigate = useNavigate();
-  const { state, pierState } = useContext(AppContext);
-  const turnoAtual = getTurnoAtual();
-
-  let atrasadoInfo = verificarAtraso(turnoAtual, state.turnoPassado);
 
   function handleNavigation(path) {
     navigate(path);
@@ -38,27 +31,6 @@ const CheckList = () => {
         </Col>
       </Row>
 
-      {atrasadoInfo.atrasado === true && (
-        <Row>
-          <Col>
-            <span style={{ fontSize: "0.8rem" }}>
-              Turno Atual: {turnoAtual}
-            </span>
-            <br />
-            <span
-              style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
-            >
-              Checklist em atrasado: {atrasadoInfo.turnoAtrasado}
-            </span>
-            <br />
-            <span
-              style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
-            >
-              Ultimo checklist concluido: {state.turnoPassado}
-            </span>
-          </Col>
-        </Row>
-      )}
       <Row>
         <Button
           variant="warning"
@@ -66,13 +38,24 @@ const CheckList = () => {
           onClick={() => handleNavigation("./pier")}
         >
           Píer
-          {atrasadoInfo.atrasado === true &&
-            pierState.pier.concluido === false && (
-              <FaExclamationTriangle
-                size={30}
-                style={{ marginLeft: "10px", float: "right" }}
-              />
-            )}
+        </Button>
+      </Row>
+
+      <Row>
+        <Button
+          variant="warning"
+          size="lg"
+        >
+          Navio
+        </Button>
+      </Row>
+
+      <Row>
+        <Button
+          variant="warning"
+          size="lg"
+        >
+          Guindaste
         </Button>
       </Row>
     </Container>

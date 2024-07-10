@@ -16,14 +16,13 @@ import {
   calcularTurno,
   checkAllTrue,
   getTurnoAtual,
-  verificarAtraso,
   resetList,
 } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { FaRegComment } from "react-icons/fa";
 
 const Pier = () => {
   const navigate = useNavigate();
-  const { state, pierState, setAppStateField } = useContext(AppContext);
+  const { pierState } = useContext(AppContext);
   const [show, setShow] = useState(false);
   const [show2, setShow2] = useState(false);
 
@@ -36,14 +35,8 @@ const Pier = () => {
   const handleClose2 = () => setShow2(false);
 
   const turnoAtual = getTurnoAtual();
-  let atrasadoInfo = verificarAtraso(turnoAtual, state.turnoPassado);
-  let infoTurno;
-
-  if (atrasadoInfo.atrasado === true) {
-    infoTurno = calcularTurno(atrasadoInfo.turnoAtrasado);
-  } else {
-    infoTurno = calcularTurno(turnoAtual);
-  }
+  const infoTurno = calcularTurno(turnoAtual);
+  
 
   function handleBackClick() {
     navigate(-1);
@@ -54,9 +47,6 @@ const Pier = () => {
     if (checkAllTrue(pierState.pier.list) === true) {
       pierState.pier.concluido = true;
       pierState.pier.list = resetList(pierState.pier.list);
-      if (atrasadoInfo.atrasado === true) {
-        setAppStateField("turnoPassado", atrasadoInfo.turnoAtrasado);
-      }
       handleShow(true);
     }
   }
