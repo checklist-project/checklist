@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ajustar tela ao fazer zoom */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  zoom: 1; /* Ajustar o zoom inicial */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.row { 
+  padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.bold-heading {
+  font-weight: 500;
+  font-family: 'Arial Narrow', sans-serif;
+  font-weight: normal;
+  font-size: 2.5em;
+  padding-top: 3.5rem;
+  text-align: center;
+}
