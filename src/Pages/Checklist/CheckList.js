@@ -10,7 +10,7 @@ import { FaExclamationTriangle } from "react-icons/fa";
 
 const CheckList = () => {
   const navigate = useNavigate();
-  const { state } = useContext(AppContext);
+  const { state, pierState } = useContext(AppContext);
   const turnoAtual = getTurnoAtual();
 
   let atrasadoInfo = verificarAtraso(turnoAtual, state.turnoPassado);
@@ -61,7 +61,7 @@ const CheckList = () => {
           onClick={() => handleNavigation("./pier")}
         >
           Píer
-          {atrasadoInfo.atrasado === true && (
+          {atrasadoInfo.atrasado === true && pierState.pier.concluido === false &&  (
             <FaExclamationTriangle
               style={{ marginLeft: "10px", float: "right" }}
             />

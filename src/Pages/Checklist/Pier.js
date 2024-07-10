@@ -51,8 +51,9 @@ const Pier = () => {
     pierState.pier.list[index].status = statusNew;
     if (checkAllTrue(pierState.pier.list) === true) {
       pierState.pier.concluido = true;
-
-      setAppStateField("turnoPassado", atrasadoInfo.turnoAtrasado);
+      if (atrasadoInfo.atrasado === true) { 
+        setAppStateField("turnoPassado", atrasadoInfo.turnoAtrasado);
+      }
       handleShow(true);
     }
   }
