@@ -68,8 +68,8 @@ const Pier = () => {
           <p>{props.title}</p>
         </Col>
         <Col>
-          <span onClick={() => handleStatusClick(props.index, true)}>Ok</span> |{" "}
-          <span onClick={() => handleStatusClick(props.index, false)}>Nok</span>
+          <span style={{ color: "green" }} onClick={() => handleStatusClick(props.index, true)}>Ok</span>|
+          <span style={{ color: "red" }} onClick={() => handleStatusClick(props.index, false)}>Nok</span>
         </Col>
         <Col>
           <FaRegComment onClick={() => handleShow2()} size={24} /> |{" "}
