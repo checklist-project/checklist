@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Context/AppContext";
 import { getTurnoAtual, verificarAtraso } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { FaExclamationTriangle } from "react-icons/fa";
+import { IoMdCheckboxOutline } from "react-icons/io";
 
 const CheckList = () => {
   const navigate = useNavigate();
@@ -23,17 +24,15 @@ const CheckList = () => {
     <Container>
       <Row className="justify-content-center">
         <Col>
-          <p className="bold-heading">CheckList Ternium</p>
+          <p className="bold-heading">
+            <IoMdCheckboxOutline size={50} />{" "}
+            <span style={{ color: "green" }}>CheckList</span> Ternium
+          </p>
         </Col>
       </Row>
       <Row>
         <Col>
-          <p style={{ color: "orange" }}>CheckList</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <p style={{ fontWeight: "bold" }}>
+          <p style={{ textAlign: "center" }}>
             Checklists disponíveis para inspeção
           </p>
         </Col>
@@ -42,30 +41,38 @@ const CheckList = () => {
       {atrasadoInfo.atrasado === true && (
         <Row>
           <Col>
-            <p style={{ fontWeight: "bold", color: "red" }}>
-              Turno concluído por último: {state.turnoPassado}
-            </p>
-            <p style={{ fontWeight: "bold", color: "red" }}>
-              Turno em atraso: {atrasadoInfo.turnoAtrasado}
-            </p>
-            <p style={{ fontWeight: "bold", color: "red" }}>
+            <span style={{ fontSize: "0.8rem" }}>
               Turno Atual: {turnoAtual}
-            </p>
+            </span>
+            <br />
+            <span
+              style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
+            >
+              Checklist em atrasado: {atrasadoInfo.turnoAtrasado}
+            </span>
+            <br />
+            <span
+              style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
+            >
+              Ultimo checklist concluido: {state.turnoPassado}
+            </span>
           </Col>
         </Row>
       )}
       <Row>
         <Button
-          variant="primary"
+          variant="warning"
           size="lg"
           onClick={() => handleNavigation("./pier")}
         >
           Píer
-          {atrasadoInfo.atrasado === true && pierState.pier.concluido === false &&  (
-            <FaExclamationTriangle
-              style={{ marginLeft: "10px", float: "right" }}
-            />
-          )}
+          {atrasadoInfo.atrasado === true &&
+            pierState.pier.concluido === false && (
+              <FaExclamationTriangle
+                size={30}
+                style={{ marginLeft: "10px", float: "right" }}
+              />
+            )}
         </Button>
       </Row>
     </Container>

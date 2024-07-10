@@ -8,9 +8,8 @@ const turnos = [
 ];
 
 export function calcularTurno(turnoAtual) {
-
   // Encontrar o turno atual
-  const turnoEncontrado = turnos.find(turno => turno.nome === turnoAtual);
+  const turnoEncontrado = turnos.find((turno) => turno.nome === turnoAtual);
 
   if (!turnoEncontrado) {
     throw new Error("Turno especificado não encontrado.");
@@ -36,17 +35,14 @@ export function calcularTurno(turnoAtual) {
   };
 }
 
-
 export const checkAllTrue = (list) => {
-  return list.every(item => item.status === true);
+  return list.every((item) => item.status === true);
 };
 
 export const resetList = (list) => {
-  const updatedList = list.map(item => ({ ...item, status: false }));
-  return updatedList
-
-}
-
+  const updatedList = list.map((item) => ({ ...item, status: false }));
+  return updatedList;
+};
 
 export const getTurnoAtual = () => {
   const now = new Date();
@@ -54,30 +50,28 @@ export const getTurnoAtual = () => {
 
   // Encontrar o turno atual
   for (let turno of turnos) {
-      if (horaAtual >= turno.inicio && horaAtual < turno.fim) {
-          return turno.nome;
-      }
+    if (horaAtual >= turno.inicio && horaAtual < turno.fim) {
+      return turno.nome;
+    }
   }
 
   // Caso não esteja em nenhum turno válido (embora isso não deveria ocorrer)
   return "Desconhecido";
-}
-
+};
 
 export const verificarAtraso = (turnoAtual, turnoPassado) => {
-
-  if (turnoAtual === turnoPassado) { 
+  if (turnoAtual === turnoPassado) {
     return {
       atrasado: false,
       turnoAtrasado: null,
     };
-
   }
 
-
   // Encontrar o índice dos turnos
-  const indiceAtual = turnos.findIndex(turno => turno.nome === turnoAtual);
-  const indicePassado = turnos.findIndex(turno => turno.nome === turnoPassado);
+  const indiceAtual = turnos.findIndex((turno) => turno.nome === turnoAtual);
+  const indicePassado = turnos.findIndex(
+    (turno) => turno.nome === turnoPassado
+  );
 
   // Verificar se está atrasado
   if (indiceAtual === -1 || indicePassado === -1) {

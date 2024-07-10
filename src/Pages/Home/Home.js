@@ -7,6 +7,7 @@ import { GrLinkNext } from "react-icons/gr";
 
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Context/AppContext";
+import { IoMdCheckboxOutline } from "react-icons/io";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,7 +24,10 @@ const Home = () => {
     <Container>
       <Row className="justify-content-center">
         <Col>
-          <p className="bold-heading">CheckList Ternium</p>
+          <p className="bold-heading">
+            <IoMdCheckboxOutline size={50} />{" "}
+            <span style={{ color: "green" }}>CheckList</span> Ternium
+          </p>
         </Col>
       </Row>
       <Row>

@@ -10,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Context/AppContext";
 import { IoArrowBack } from "react-icons/io5";
 import CameraCapture from "../../Components/CameraCapture"; // Substitua pelo caminho correto do seu componente
+import { IoMdCheckboxOutline } from "react-icons/io";
 
 import {
   calcularTurno,
   checkAllTrue,
   getTurnoAtual,
   verificarAtraso,
-  resetList
+  resetList,
 } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
 import { FaRegComment } from "react-icons/fa";
 
@@ -52,8 +53,8 @@ const Pier = () => {
     pierState.pier.list[index].status = statusNew;
     if (checkAllTrue(pierState.pier.list) === true) {
       pierState.pier.concluido = true;
-      pierState.pier.list = resetList(pierState.pier.list)
-      if (atrasadoInfo.atrasado === true) { 
+      pierState.pier.list = resetList(pierState.pier.list);
+      if (atrasadoInfo.atrasado === true) {
         setAppStateField("turnoPassado", atrasadoInfo.turnoAtrasado);
       }
       handleShow(true);
@@ -126,7 +127,10 @@ const Pier = () => {
       <ModalInput />
       <Row className="justify-content-center">
         <Col>
-          <p className="bold-heading">CheckList Ternium</p>
+          <p className="bold-heading">
+            <IoMdCheckboxOutline size={50} />{" "}
+            <span style={{ color: "green" }}>CheckList</span> Ternium
+          </p>
         </Col>
       </Row>
       <Row>
@@ -135,7 +139,7 @@ const Pier = () => {
         </Col>
       </Row>
       <Row>
-        <Button variant="primary" size="lg">
+        <Button variant="warning" size="lg">
           Píer
         </Button>
       </Row>
