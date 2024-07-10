@@ -10,6 +10,7 @@ import Home from "../Pages/Home/Home";
 import CheckList from "../Pages/Checklist/CheckList";
 import Pier from "../Pages/Checklist/Pier";
 import Pendente from "../Pages/Pendente/Pendente";
+import PierPendente from "../Pages/Pendente/Pier";
 import SandwichMenu from "../Components/Menu/SandwichMenu";
 import { AppProvider } from "../Context/AppContext";
 
@@ -29,6 +30,7 @@ function App() {
             
             {/* pendente */}
             <Route path="/pendente" element={<Pendente />} />
+            <Route path="/pendente/pier" element={<PierPendente />} />
           </Routes>
         </AppProvider>
       </Container>

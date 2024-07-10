@@ -1,10 +1,10 @@
 // utils.js
 
 const turnos = [
-  { nome: "madrugada", inicio: 0, fim: 6 },
-  { nome: "manha", inicio: 6, fim: 12 },
-  { nome: "tarde", inicio: 12, fim: 18 },
-  { nome: "noite", inicio: 18, fim: 24 },
+  { nome: "manha", inicio: 6, fim: 7},
+  { nome: "tarde", inicio: 12, fim: 13 },
+  { nome: "noite", inicio: 18, fim: 19 },
+  { nome: "madrugada", inicio: 0, fim: 1 },
 ];
 
 export function calcularTurno(turnoAtual) {
@@ -45,18 +45,41 @@ export const resetList = (list) => {
 };
 
 export const getTurnoAtual = () => {
-  const now = new Date();
-  const horaAtual = now.getHours();
 
-  // Encontrar o turno atual
+  const now = new Date();
+  let horaAtual = now.getHours();
+  let turnoAtual = null;
+  let atrasado = false;
+
+  // Verificar turno atual diretamente
   for (let turno of turnos) {
     if (horaAtual >= turno.inicio && horaAtual < turno.fim) {
-      return turno.nome;
+      return {
+        turno: turno.nome,
+        atrasado: false,
+      };
     }
   }
 
-  // Caso não esteja em nenhum turno válido (embora isso não deveria ocorrer)
-  return "Desconhecido";
+  // Se não encontrou diretamente, subtrair horas para encontrar o turno anterior
+  while (true) {
+    horaAtual = (horaAtual - 1 + 24) % 24;
+
+    for (let turno of turnos) {
+      if (horaAtual >= turno.inicio && horaAtual < turno.fim) {
+        turnoAtual = turno.nome;
+        atrasado = true;
+        break;
+      }
+    }
+
+    if (turnoAtual) {
+      return {
+        turno: turnoAtual,
+        atrasado: atrasado,
+      };
+    }
+  }
 };
 
 export const verificarAtraso = (turnoAtual, turnoPassado) => {
