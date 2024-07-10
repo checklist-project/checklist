@@ -46,7 +46,7 @@ const Pier = () => {
 
   const BttRow = (props) => {
     return (
-      <Row>
+      <Row style={{ border: '2px solid black', marginTop: "20px"}} >
         <Col xs={6}>
           <p>{props.title}</p>
         </Col>
@@ -70,13 +70,8 @@ const Pier = () => {
       </Row>
       <Row>
         <Col>
-          <p style={{ color: "orange" }}>CheckList</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <p style={{ fontWeight: "bold" }}>
-            Checklists disponíveis para inspeção
+          <p style={{ textAlign: "center" }}>
+            Checklists disponível para área
           </p>
         </Col>
       </Row>
@@ -88,10 +83,6 @@ const Pier = () => {
       <Row>
         <Col>
           <p style={{ fontWeight: "bold" }}>Checklist {infoTurno.data}</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
           <p>
             Inicio ás {infoTurno.horaInicio} - Previsão de conclusão{" "}
             {infoTurno.previsaoTermino}
