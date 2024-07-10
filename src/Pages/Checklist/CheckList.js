@@ -18,8 +18,6 @@ const CheckList = () => {
   function handleNavigation(path) {
     navigate(path);
   }
-  const buttons = [0, 1, 2];
-
   return (
     <Container>
       <Row className="justify-content-center">
@@ -37,41 +35,57 @@ const CheckList = () => {
           </p>
         </Col>
       </Row>
-      {buttons.map((button, index) => (
-        <>
-          {pierState.pier.concluido === false && (
-            <Row>
-              <Button
-                variant="warning"
-                size="lg"
-                onClick={() => handleNavigation("./pier")}
-              >
-                Píer
-                {turnoAtual.atrasado === true && (
-                  <FaExclamationTriangle
-                    size={30}
-                    style={{ marginLeft: "10px", float: "right" }}
-                  />
-                )}
-              </Button>
-            </Row>
-          )}
-          {turnoAtual.atrasado === true &&
-            pierState.pier.concluido === false && (
-              <Row>
-                <span
-                  style={{
-                    color: "red",
-                    fontSize: "1rem",
-                    marginTop: "-0.8rem",
-                  }}
-                >
-                  Atenção: Checklist em atrasado !
-                </span>
-              </Row>
+
+      {pierState.pier.concluido === false && (
+        <Row>
+          <Button
+            variant="warning"
+            size="lg"
+            onClick={() => handleNavigation("./pier")}
+          >
+            Píer
+            {turnoAtual.atrasado === true && (
+              <FaExclamationTriangle
+                size={30}
+                style={{ marginLeft: "10px", float: "right" }}
+              />
             )}
-        </>
-      ))}
+          </Button>
+        </Row>
+      )}
+      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+        <Row>
+          <span
+            style={{
+              color: "red",
+              fontSize: "1rem",
+              marginTop: "-0.8rem",
+            }}
+          >
+            Atenção: Checklist em atrasado !
+          </span>
+        </Row>
+      )}
+
+      <Row style={{ marginTop: "2.5rem" }}>
+        <Button
+          variant="warning"
+          size="lg"
+          onClick={() => handleNavigation("./exemple1")}
+        >
+          Navio
+        </Button>
+      </Row>
+
+      <Row style={{ marginTop: "2.5rem" }}>
+        <Button
+          variant="warning"
+          size="lg"
+          onClick={() => handleNavigation("./exemple2")}
+        >
+          Guindaste
+        </Button>
+      </Row>
     </Container>
   );
 };
