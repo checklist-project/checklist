@@ -49,20 +49,20 @@ const CheckList = () => {
           {turnoAtual.atrasado === true && pierState.pier.concluido === undefined && (
             <IoWarningOutline
               size={30}
-              style={{ marginLeft: "10px", float: "right" }}
+              style={{ marginLeft: "-30px", float: "right" }}
             />
           )}
 
           {pierState.pier.concluido === false && (
             <IoMdCloseCircleOutline
               size={30}
-              style={{ marginLeft: "10px", float: "right" }}
+              style={{ marginLeft: "-30px", float: "right" }}
             />
           )}
           {pierState.pier.concluido === true && (
             <MdOutlineDone
               size={30}
-              style={{ marginLeft: "10px", float: "right" }}
+              style={{ marginLeft: "-30px", float: "right" }}
             />
           )}
         </Button>
@@ -92,7 +92,7 @@ const CheckList = () => {
           {turnoAtual.atrasado === true && (
             <IoWarningOutline
               size={30}
-              style={{ marginLeft: "10px", float: "right" }}
+              style={{ marginLeft: "-30px", float: "right" }}
             />
           )}
         </Button>
@@ -121,7 +121,7 @@ const CheckList = () => {
           {turnoAtual.atrasado === true && (
             <IoWarningOutline
               size={30}
-              style={{ marginLeft: "10px", float: "right" }}
+              style={{ marginLeft: "-30px", float: "right" }}
             />
           )}
         </Button>

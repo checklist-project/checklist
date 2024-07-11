@@ -123,35 +123,37 @@ export const verificarAtraso = (turnoAtual, turnoPassado) => {
   }
 };
 
-const ultimoTurnoFeito = {
-  turno: "madrugada",
-  data: new Date(new Date().setDate(new Date().getDate() - 1)),
-  inicio: 6,
-  fim: 7,
-};
-const turnoAtual = getTurnoAtual();
-
-export const getTurnosPassados = () => {
+export const getTurnosPassados = (ultimoTurnoFeito, turnoAtual) => {
 
   let indiceAtual = turnos.findIndex(
     (turno) => turno.nome === turnoAtual.turno
   );
-  if (ultimoTurnoFeito.turno !== turnoAtual.turno) {
-    indiceAtual--;
-  }
 
   let turnosPassados = [];
-  while (indiceAtual >= 0) {
-    if (turnos[indiceAtual].nome === ultimoTurnoFeito.turno) {
+  let limit = 0;
+  let tempData = turnoAtual.data;
+
+  indiceAtual = (indiceAtual === 0) ? turnos.length - 1 : indiceAtual - 1;
+
+  while (true) {
+    if (limit === 10) { 
+      break
+    } 
+    console.log('limit:',ultimoTurnoFeito.data.getDate(), "temp:",tempData.getDate())
+    if (turnos[indiceAtual].nome === ultimoTurnoFeito.turno && ultimoTurnoFeito.data.getDate() ===  tempData.getDate()) {
       break;
     }
     turnosPassados.unshift({
       turno: turnos[indiceAtual].nome,
-      data: new Date(),
+      data: tempData,
       inicio: turnos[indiceAtual].inicio,
       fim: turnos[indiceAtual].fim,
     });
-    indiceAtual--;
+    indiceAtual = (indiceAtual === 0) ? turnos.length - 1 : indiceAtual - 1;
+    if (turnos[indiceAtual].nome === "noite") { 
+    limit+= 1
+    tempData = new Date(new Date().setDate(new Date().getDate() - limit));
+    }
   }
   return turnosPassados.reverse();
 };

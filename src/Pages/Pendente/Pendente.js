@@ -4,12 +4,30 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { IoMdCheckboxOutline } from "react-icons/io";
-import { getTurnosPassados } from "../../Utils/Utils"; // Importe a função do arquivo auxiliar
+import { getTurnosPassados, getTurnoAtual } from "../../Utils/Utils";
 import { IoWarningOutline } from "react-icons/io5";
+
+const ultimoTurnoFeito = {
+  turno: "madrugada",
+  data: new Date(2024, 6, 9, 1, 30, 0, 0),
+  inicio: 0,
+  fim: 1,
+};
 
 const Pendente = () => {
 
-  const turnosPassados = getTurnosPassados()
+  const formatarDataHora = (data) => {
+    return `${data.toLocaleDateString()} - ${data.toLocaleTimeString()}`;
+  };
+
+  const formatarData = (data) => {
+    return `${data.toLocaleDateString()}`;
+  };
+
+
+  const turnoAtual = getTurnoAtual();
+  const turnosPassados = getTurnosPassados(ultimoTurnoFeito, turnoAtual);
+
 
   return (
     <Container>
@@ -29,14 +47,22 @@ const Pendente = () => {
           </p>
         </Col>
       </Row>
-  
+      <Row>
+        <Col>
+          <p style={{ textAlign: "center" }}>
+            Ultimo checklist completo: {formatarDataHora(ultimoTurnoFeito.data)}
+          </p>
+        </Col>
+      </Row>
+
       {turnosPassados.map((turno, index) => (
         <Row key={index}>
           <Button variant="warning" size="lg">
-            Checklists pendentes {turno.inicio}h - {turno.fim}h
+            Checklists pendentes {turno.inicio}h - {turno.fim}h{" "}
+            {formatarData(turno.data)}
             <IoWarningOutline
               size={30}
-              style={{ marginLeft: "10px", float: "right" }}
+              style={{ marginLeft: "-30px", float: "right" }}
             />
           </Button>
         </Row>
