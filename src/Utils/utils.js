@@ -155,5 +155,5 @@ export const getTurnosPassados = (ultimoTurnoFeito, turnoAtual) => {
     tempData = new Date(new Date().setDate(new Date().getDate() - limit));
     }
   }
-  return turnosPassados.reverse();
+  return turnosPassados;
 };
