@@ -21,14 +21,11 @@ function App() {
       <Container fluid>
         <AppProvider>
           <Routes>
-            <Route path="/" element={<Navigate to="/inicio" />} />
-            <Route path="/inicio" element={<Home />} />
-            {/* checlist */}
-            <Route path="/checklist" element={<CheckList />} />
-            <Route path="/checklist/Pier" element={<Pier />} />
-            
-            {/* pendente */}
-            <Route path="/pendente" element={<Pendente />} />
+            <Route path="/" element={<Navigate to="/checklist" />} />
+            <Route path="/checklist" element={<Home />} />
+            <Route path="/checklist/new" element={<CheckList />} />
+            <Route path="/checklist/new/Pier" element={<Pier />} />
+            <Route path="/checklist/pendente" element={<Pendente />} />
           </Routes>
         </AppProvider>
       </Container>

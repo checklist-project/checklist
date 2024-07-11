@@ -16,7 +16,7 @@ const Home = () => {
 
   function handleClick() {
     setAppStateField("inicio", Date.now());
-    navigate("/checklist");
+    navigate("/checklist/new");
     return;
   }
 

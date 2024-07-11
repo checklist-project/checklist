@@ -27,15 +27,15 @@ function SandwichMenu() {
       </div>
       {expanded && (
         <div className="menu-items">
-          <div className="icon-container" onClick={() => handleNavigation('/inicio')}>
+          <div className="icon-container" onClick={() => handleNavigation('/checklist')}>
             <AiOutlineHome size={24} />        
             <span>Inicio</span>
           </div>
-          <div className="icon-container" onClick={() => handleNavigation('/checklist')}>
+          <div className="icon-container" onClick={() => handleNavigation('/checklist/new')}>
             <AiOutlineInfoCircle size={24} />
             <span>Fazer CheckList</span>
           </div>
-          <div className="icon-container" onClick={() => handleNavigation('/pendente')}>
+          <div className="icon-container" onClick={() => handleNavigation('/checklist/pendente')}>
             <MdOutlinePendingActions size={24} />
             <span>Pendente CheckList</span>
           </div>

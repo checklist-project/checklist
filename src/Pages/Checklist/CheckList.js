@@ -141,7 +141,7 @@ const CheckList = () => {
         </Row>
       )}
       <Row style={{ paddingTop: "2rem" }} className="justify-content-center">
-        <IoArrowBack onClick={() => handleNavigation('/inicio')} size={48} />
+        <IoArrowBack onClick={() => handleNavigation('/checklist')} size={48} />
       </Row>
     </Container>
   );
