@@ -40,6 +40,9 @@ code {
   background-color: grey;
   color: red;
   border-radius: 50%;
-  padding: 3px; /* Ajuste o padding conforme necessário para o tamanho da bolinha */
   text-align: center;
+}
+
+.border {
+  border: 1px solid;
 }

@@ -69,7 +69,7 @@ const Pier = () => {
           >
             Ok
           </span>
-          |
+          {" "}|{" "}
           <span
             className={
               pierState.pier.list[props.index].status === false
@@ -166,7 +166,7 @@ const Pier = () => {
       {pierState.pier.list.map((item, index) => (
         <BttRow key={index} index={item.index} title={item.title} />
       ))}
-      <Row style={{ paddingTop: "5rem" }} className="justify-content-center">
+      <Row style={{ paddingTop: "2rem" }} className="justify-content-center">
         <IoArrowBack onClick={() => handleBackClick()} size={48} />
       </Row>
     </Container>

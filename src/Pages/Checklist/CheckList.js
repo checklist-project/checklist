@@ -10,6 +10,7 @@ import { AppContext } from "../../Context/AppContext";
 import { MdOutlineDone } from "react-icons/md";
 import { IoWarningOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { IoArrowBack } from "react-icons/io5";
 
 
 const CheckList = () => {
@@ -139,6 +140,9 @@ const CheckList = () => {
           </span>
         </Row>
       )}
+      <Row style={{ paddingTop: "2rem" }} className="justify-content-center">
+        <IoArrowBack onClick={() => handleNavigation('/inicio')} size={48} />
+      </Row>
     </Container>
   );
 };
