@@ -1,10 +1,8 @@
-// utils.js
-
 const turnos = [
-  { nome: "manha", inicio: 6, fim: 7},
+  { nome: "madrugada", inicio: 0, fim: 1 },
+  { nome: "manha", inicio: 6, fim: 7 },
   { nome: "tarde", inicio: 12, fim: 13 },
   { nome: "noite", inicio: 18, fim: 19 },
-  { nome: "madrugada", inicio: 0, fim: 1 },
 ];
 
 export function calcularTurno(turnoAtual) {
@@ -45,36 +43,43 @@ export const resetList = (list) => {
 };
 
 export const getTurnoAtual = () => {
-
   const now = new Date();
   let horaAtual = now.getHours();
   let turnoAtual = null;
   let atrasado = false;
 
   // Verificar turno atual diretamente
+  let index = 0;
   for (let turno of turnos) {
     if (horaAtual >= turno.inicio && horaAtual < turno.fim) {
       return {
+        data: new Date(),
+        index: index,
         turno: turno.nome,
         atrasado: false,
       };
     }
+    index += 1;
   }
 
   // Se não encontrou diretamente, subtrair horas para encontrar o turno anterior
   while (true) {
     horaAtual = (horaAtual - 1 + 24) % 24;
 
+    let index = 0;
     for (let turno of turnos) {
       if (horaAtual >= turno.inicio && horaAtual < turno.fim) {
         turnoAtual = turno.nome;
         atrasado = true;
         break;
       }
+      index += 1;
     }
 
     if (turnoAtual) {
       return {
+        data: new Date(),
+        index: index,
         turno: turnoAtual,
         atrasado: atrasado,
       };
@@ -116,4 +121,37 @@ export const verificarAtraso = (turnoAtual, turnoPassado) => {
       turnoAtrasado: turnos[proximoIndice].nome,
     };
   }
+};
+
+const ultimoTurnoFeito = {
+  turno: "madrugada",
+  data: new Date(new Date().setDate(new Date().getDate() - 1)),
+  inicio: 6,
+  fim: 7,
+};
+const turnoAtual = getTurnoAtual();
+
+export const getTurnosPassados = () => {
+
+  let indiceAtual = turnos.findIndex(
+    (turno) => turno.nome === turnoAtual.turno
+  );
+  if (ultimoTurnoFeito.turno !== turnoAtual.turno) {
+    indiceAtual--;
+  }
+
+  let turnosPassados = [];
+  while (indiceAtual >= 0) {
+    if (turnos[indiceAtual].nome === ultimoTurnoFeito.turno) {
+      break;
+    }
+    turnosPassados.unshift({
+      turno: turnos[indiceAtual].nome,
+      data: new Date(),
+      inicio: turnos[indiceAtual].inicio,
+      fim: turnos[indiceAtual].fim,
+    });
+    indiceAtual--;
+  }
+  return turnosPassados.reverse();
 };

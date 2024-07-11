@@ -16,7 +16,7 @@ import {
   calcularTurno,
   checkAllTrue,
   getTurnoAtual,
-} from "../../Utils/utils"; // Importe a função do arquivo auxiliar
+} from "../../Utils/Utils"; // Importe a função do arquivo auxiliar
 import { FaRegComment } from "react-icons/fa";
 
 const Pier = () => {

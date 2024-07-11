@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { IoMdCheckboxOutline } from "react-icons/io";
-import { getTurnoAtual } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
+import { getTurnoAtual } from "../../Utils/Utils"; // Importe a função do arquivo auxiliar
 import { AppContext } from "../../Context/AppContext";
 import { MdOutlineDone } from "react-icons/md";
 import { IoWarningOutline } from "react-icons/io5";
@@ -68,7 +68,7 @@ const CheckList = () => {
         </Button>
       </Row>
 
-      {turnoAtual.atrasado === true && pierState.pier.concluido === false && (
+      {turnoAtual.atrasado === true && pierState.pier.concluido !== true && (
         <Row>
           <span
             style={{

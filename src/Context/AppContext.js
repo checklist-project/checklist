@@ -26,17 +26,6 @@ const AppProvider = ({ children }) => {
     },
   });
 
-  const [pierPendenteState, setPierPendenteState] = useState({
-    pier: {
-      concluido: false,
-      list: [
-        { index: 0, title: "BTT", status: false },
-        { index: 1, title: "Retorno 101", status: false },
-        { index: 2, title: "Cabeço 6 á 8", status: false },
-        { index: 3, title: "Cabeço 8 á 12", status: false },
-      ],
-    },
-  });
 
   const setAppStateField = (key, value) => {
     setAppState((prevState) => ({ ...prevState, [key]: value }));
@@ -46,9 +35,6 @@ const AppProvider = ({ children }) => {
     setPierState((prevState) => ({ ...prevState, [key]: value }));
   };
 
-  const setPierPendenteStateField = (key, value) => {
-    setPierPendenteState((prevState) => ({ ...prevState, [key]: value }));
-  };
 
   const updatePierStatus = (index, statusNew) => {
     setPierState(prevState => {
@@ -68,7 +54,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ state, setAppStateField, pierState, setPierStateField, pierPendenteState, setPierPendenteStateField, updatePierStatus }}
+      value={{ state, setAppStateField, pierState, setPierStateField, updatePierStatus }}
     >
       {children}
     </AppContext.Provider>

@@ -1,24 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../Context/AppContext";
-import { getTurnoAtual, verificarAtraso } from "../../Utils/utils"; // Importe a função do arquivo auxiliar
-import { FaExclamationTriangle } from "react-icons/fa";
 import { IoMdCheckboxOutline } from "react-icons/io";
+import { getTurnosPassados } from "../../Utils/Utils"; // Importe a função do arquivo auxiliar
+import { IoWarningOutline } from "react-icons/io5";
 
 const Pendente = () => {
-  const navigate = useNavigate();
-  const { state, pierPendenteState } = useContext(AppContext);
-  const turnoAtual = getTurnoAtual();
 
-  let atrasadoInfo = verificarAtraso(turnoAtual.turno, state.turnoPassado);
-
-  function handleNavigation(path) {
-    navigate(path);
-  }
+  const turnosPassados = getTurnosPassados()
 
   return (
     <Container>
@@ -33,45 +24,23 @@ const Pendente = () => {
       <Row>
         <Col>
           <p style={{ textAlign: "center" }}>
-            Checklists disponíveis para inspeção
+            Abaixo a lista de todos os checklist com alguma pendencia para
+            resoluçao:
           </p>
         </Col>
       </Row>
-
-      <Row>
-        <Col>
-          <span style={{ fontSize: "0.8rem" }}>Turno Atual: {turnoAtual}</span>
-          <br />
-          <span
-            style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
-          >
-            Checklist em atrasado: {atrasadoInfo.turnoAtrasado}
-          </span>
-          <br />
-          <span
-            style={{ color: "red", fontStyle: "italic", fontSize: "0.8rem" }}
-          >
-            Ultimo checklist concluido: {state.turnoPassado}
-          </span>
-        </Col>
-      </Row>
-
-      <Row>
-        <Button
-          variant="warning"
-          size="lg"
-          onClick={() => handleNavigation("./pier")}
-        >
-          Píer
-          {atrasadoInfo.atrasado === true &&
-            pierPendenteState.pier.concluido === false && (
-              <FaExclamationTriangle
-                size={30}
-                style={{ marginLeft: "10px", float: "right" }}
-              />
-            )}
-        </Button>
-      </Row>
+  
+      {turnosPassados.map((turno, index) => (
+        <Row key={index}>
+          <Button variant="warning" size="lg">
+            Checklists pendentes {turno.inicio}h - {turno.fim}h
+            <IoWarningOutline
+              size={30}
+              style={{ marginLeft: "10px", float: "right" }}
+            />
+          </Button>
+        </Row>
+      ))}
     </Container>
   );
 };
